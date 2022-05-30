@@ -21,54 +21,34 @@ const LoginPage = () => {
                     linkUrl="/signup"
                 />
 
-                <div className="mt-8 space-y-6">
+                <div className="mt-8">
                     <div className="-space-y-px">
                         <Input
                             handleChange={(e) => setEmailState(e.target.value)}
                             value={getEmailState}
-                            labelText={"Email address"}
-                            labelFor={"email-address"}
-                            id={"email-address"}
-                            name={"email"}
-                            type={"email"}
+                            labelText={"Nama ID"}
+                            labelFor={"nama_id"}
+                            id={"nama_id"}
+                            name={"nama_id"}
+                            type={"text"}
                             isRequired={true}
-                            placeholder={"Email address"}
+                            placeholder={"Nama ID"}
                         />
                         <Input
                             handleChange={(e) => setPasswordState(e.target.value)}
                             value={getPasswordState}
-                            labelText={"Password"}
-                            labelFor={"password"}
-                            id={"password"}
-                            name={"password"}
+                            labelText={"Kata laluan"}
+                            labelFor={"kata_laluan"}
+                            id={"kata_laluan"}
+                            name={"kata_laluan"}
                             type={"password"}
                             isRequired={true}
-                            placeholder={"password"}
+                            placeholder={"Kata laluan"}
                         />
                     </div>
 
-
-                    <div className="flex items-center justify-between ">
-                        <div className="flex items-center">
-                            <input
-                                id="remember-me"
-                                name="remember-me"
-                                type="checkbox"
-                                className="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded"
-                            />
-                            <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
-                                Remember me
-                            </label>
-                        </div>
-
-                        <div className="text-sm">
-                            <label className="font-medium text-purple-600 hover:text-purple-500">
-                                Forgot your password?
-                            </label>
-                        </div>
-                    </div>
                     <button
-                        className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 mt-10"
+                        className="group relative w-full flex justify-center py-2 px-6 border border-transparent text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 mt-10"
                         onClick={() => handleSubmit()}
                     >
 

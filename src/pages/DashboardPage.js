@@ -1,20 +1,31 @@
 import React, { useState } from 'react'
-import AuthHeader from '../components/AuthHeader'
 import Input from '../components/Input'
+import useKelabModule from '../modules/useKelabModule'
 
 const DashboardPage = () => {
+    const { kelabAddFunction } = useKelabModule()
     const [getKelabIdState, setKelabIdState] = useState("")
     const [getKelabNamaState, setKelabNamaState] = useState("")
     const [getKelabTelState, setKelabTelState] = useState("")
     const [getKelabEmailState, setKelabEmailState] = useState("")
     const [getKelabPasswordState, setKelabPasswordState] = useState("")
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         if (getKelabIdState !== "" &&
             getKelabNamaState !== "" &&
             getKelabTelState !== "" &&
             getKelabEmailState !== "" &&
             getKelabPasswordState !== "") {
+
+            const returnData = await kelabAddFunction({
+                "kelab_id": getKelabIdState,
+                "kelab_nama": getKelabNamaState,
+                "kelab_tel": getKelabTelState,
+                "kelab_email": getKelabEmailState,
+                "kelab_password": getKelabPasswordState,
+            });
+            if (returnData) {
+            }
 
         }
     }

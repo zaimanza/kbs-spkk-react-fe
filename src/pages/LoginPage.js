@@ -26,8 +26,6 @@ const LoginPage = () => {
     }, [kelabProvider]);
 
     useEffect(() => {
-        console.log("load_page")
-        console.log(kelabProvider.kelab_id)
         if (kelabProvider.kelab_id !== "") {
             navigate("/home");
         } else {

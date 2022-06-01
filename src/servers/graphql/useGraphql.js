@@ -8,11 +8,11 @@ function useGraphql() {
 
     const { client } = useApolloClient()
 
-    const query = async (query, variables) => {
+    const query = async ({ query, variables }) => {
         // closeSnackbar();
         let options = { query: query, }
 
-        if (Object.keys(variables).length !== 0) {
+        if (variables?.length !== 0) {
             options.variables = variables
         }
 

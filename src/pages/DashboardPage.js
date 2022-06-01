@@ -1,37 +1,51 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Input from '../components/Input'
+import TableOne from '../components/TableOne'
 import useKelabModule from '../modules/useKelabModule'
 
 const DashboardPage = () => {
-    const { kelabAddFunction } = useKelabModule()
+    const { kelabAddFunction, kelabFindAllFunction } = useKelabModule()
     const [getKelabIdState, setKelabIdState] = useState("")
     const [getKelabNamaState, setKelabNamaState] = useState("")
     const [getKelabTelState, setKelabTelState] = useState("")
     const [getKelabEmailState, setKelabEmailState] = useState("")
     const [getKelabPasswordState, setKelabPasswordState] = useState("")
+    const [getKelabListState, setKelabListState] = useState([])
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await kelabFindAllFunction()
+            setKelabListState(response)
+            // ...
+        }
+        fetchData();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     const handleSubmit = async () => {
+
+        // await kelabFindAllFunction()
         if (getKelabIdState !== "" &&
             getKelabNamaState !== "" &&
             getKelabTelState !== "" &&
             getKelabEmailState !== "" &&
             getKelabPasswordState !== "") {
 
-            const returnData = await kelabAddFunction({
+            await kelabAddFunction({
                 "kelab_id": getKelabIdState,
                 "kelab_nama": getKelabNamaState,
                 "kelab_tel": getKelabTelState,
                 "kelab_email": getKelabEmailState,
                 "kelab_password": getKelabPasswordState,
             });
-            if (returnData) {
-            }
-
         }
     }
+
+    const [isCheck, setIsCheck] = useState([])
+    const [titleCheck, setTitleCheck] = useState()
     return (
         <div className="py-8 px-8">
-            <div className="max-w-md w-full space-y-8">
+            <div className=" w-full space-y-8">
                 <div className="mb-10">
                     <h2 className="text-center text-3xl font-extrabold text-gray-900">
                         {"DAFTAR KELAB BARU"}
@@ -96,13 +110,33 @@ const DashboardPage = () => {
                     />
 
                     <button
-                        className="group relative w-full flex justify-center py-2 px-6 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 mt-10"
+                        className="group relative w-full flex justify-center py-2 px-6 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 mt-10"
                         onClick={() => handleSubmit()}
                     >
 
                         {"Tambah"}
                     </button>
                 </div>
+
+                <TableOne
+                    tableKey={"_id"}
+                    isShowId={false}
+                    isCheck={isCheck}
+                    setIsCheck={setIsCheck}
+                    titleCheck={titleCheck}
+                    setTitleCheck={setTitleCheck}
+                    isCheckboxOn={true}
+                    titles={[
+                        // "id",
+                        "Kelab ID",
+                        "Kelab Nama",
+                        "Kelab Tel",
+                        "Kelab Email",
+                        "Kelab Kata Laluan",
+                    ]}
+                    products={getKelabListState ?? []}
+                    options={(<div></div>)}
+                />
 
             </div>
         </div>

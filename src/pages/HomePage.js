@@ -5,6 +5,7 @@ import { kelabLogoutReducer } from '../providers/kelabProvider';
 import DashboardPage from './DashboardPage';
 import PendaftaranPage from './PendaftaranPage';
 import PermohonanPage from './PermohonanPage';
+import ProfilPage from './ProfilPage';
 
 const HomePage = () => {
 
@@ -13,6 +14,7 @@ const HomePage = () => {
         { title: 'Dashboard' },
         { title: 'Pendaftaran' },
         { title: 'Permohonan' },
+        { title: 'Profil' },
     ];
     const dispatch = useDispatch()
 
@@ -34,6 +36,8 @@ const HomePage = () => {
                 return (<PermohonanPage
                     setTabIndex={setTabIndex}
                 />);
+            case 'Profil':
+                return (<ProfilPage />);
             default:
                 return (<DashboardPage />);
         }

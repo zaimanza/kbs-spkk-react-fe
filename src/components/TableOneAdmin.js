@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-export default function TableOne({ isCheck, setIsCheck, titleCheck, setTitleCheck, titles, products, options, isCheckboxOn, tableKey, isShowId }) {
+export default function TableOneAdmin({ isCheck, setIsCheck, titleCheck, setTitleCheck, titles, products, options, isCheckboxOn, tableKey, isShowId }) {
     const onCheckboxClick = (e) => {
         const { name, id, checked } = e.target
         if (name === "allSelect") {
@@ -123,6 +123,16 @@ export default function TableOne({ isCheck, setIsCheck, titleCheck, setTitleChec
                                                         </td>
                                                     ) : null}
                                                     {columns?.map((column) => column)}
+                                                    {
+                                                        !(product.kertas_kerja_status) ?
+                                                            <th scope="row" className="px-6 py-4 font-medium text-gray-900  whitespace-nowrap">
+                                                                <div className="inline-flex shadow-md hover:shadow-lg focus:shadow-lg" role="group">
+                                                                    <button type="button" className="rounded-l inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase hover:bg-blue-700 focus:bg-blue-700 focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out">Decline</button>
+                                                                    <button type="button" className=" rounded-r inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase hover:bg-blue-700 focus:bg-blue-700 focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out">Accept</button>
+                                                                </div>
+                                                            </th>
+                                                            : <div>{product.kertas_kerja_status ?? ""}</div>
+                                                    }
                                                 </tr>
                                             )
                                         })}

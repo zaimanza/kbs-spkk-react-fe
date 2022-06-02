@@ -5,7 +5,12 @@ import { onError } from "@apollo/client/link/error";
 function useApolloClient() {
     // const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
-    const httpLink = createHttpLink({ uri: "http://localhost:4001/graphql", });
+    const httpLink = createHttpLink(
+        {
+            // uri: "http://localhost:4001/graphql" ,
+            uri: "https://dropgo.herokuapp.com/graphql",
+
+        });
 
     const authLink = setContext((_, { headers }) => {
         let accessToken

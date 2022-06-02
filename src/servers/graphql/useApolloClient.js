@@ -7,7 +7,7 @@ function useApolloClient() {
 
     const httpLink = createHttpLink(
         {
-            uri: "http://localhost:4001/graphql",
+            uri: process.env.NEXT_PUBLIC_API_URL_GRAPHQL ?? "http://localhost:4001/graphql",
             // uri: "https://dropgo.herokuapp.com/graphql",
 
         });

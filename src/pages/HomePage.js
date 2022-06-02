@@ -3,13 +3,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { kelabLogoutReducer } from '../providers/kelabProvider';
 import DashboardPage from './DashboardPage';
+import PendaftaranPage from './PendaftaranPage';
+import PermohonanPage from './PermohonanPage';
 
 const HomePage = () => {
 
     const [getTabIndex, setTabIndex] = useState(0);
     const MenuTabs = [
-        { title: 'Dashboard ' },
-        { title: 'Tile2 ' },
+        { title: 'Dashboard' },
+        { title: 'Pendaftaran' },
+        { title: 'Permohonan' },
     ];
     const dispatch = useDispatch()
 
@@ -22,11 +25,15 @@ const HomePage = () => {
     }
 
     const switchDisplayPage = () => {
-        switch (getTabIndex) {
-            case 0:
+        switch (MenuTabs[getTabIndex].title) {
+            case 'Dashboard':
                 return (<DashboardPage />);
-            case 1:
-                return (<div></div>);
+            case 'Pendaftaran':
+                return (<PendaftaranPage />);
+            case 'Permohonan':
+                return (<PermohonanPage
+                    setTabIndex={setTabIndex}
+                />);
             default:
                 return (<DashboardPage />);
         }

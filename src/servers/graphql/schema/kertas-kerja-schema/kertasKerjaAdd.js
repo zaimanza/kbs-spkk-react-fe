@@ -4,6 +4,7 @@ export const kertasKerjaAdd = gql`
 mutation KertasKerjaAdd($kertasKerja: kertasKerjaReq!) {
   kertasKerjaAdd(kertasKerja: $kertasKerja) {
     _id
+    kelab_id
     nama_program
     pengarah_program
     kluster_program

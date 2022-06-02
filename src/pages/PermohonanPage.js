@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 import Input from '../components/Input'
 import useKertasKerjaModule from '../modules/useKertasKerjaModule'
 
@@ -12,6 +13,8 @@ const PermohonanPage = ({ setTabIndex }) => {
     const [getNomborMatrikPengarahState, setNomborMatrikPengarahState] = useState("")
     const [getNomborTelPengarahState, setNomborTelPengarahState] = useState("")
     const [getFakultiState, setFakultiState] = useState("")
+
+    const kelabProvider = useSelector((state) => state.kelab.value)
 
 
     const handleSubmit = async () => {
@@ -27,6 +30,7 @@ const PermohonanPage = ({ setTabIndex }) => {
             getFakultiState !== "") {
 
             const savedKertasKerja = await kertasKerjaAddFunction({
+                "kelab_id": kelabProvider.kelab_id,
                 "nama_program": getNamaProgramState,
                 "pengarah_program": getPengarahProgramState,
                 "kluster_program": getKlusterProgramState,

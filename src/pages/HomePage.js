@@ -78,19 +78,29 @@ const HomePage = () => {
                             src="/logo_black.png" />
                     </div>
                     <ul className="pt-6">
-                        {MenuTabs.map((Menu, index) => (
-                            <button
-                                key={index}
-                                onClick={() => menuTabOnClick(index)}
-                                className={`flex  rounded-md p-2 cursor-pointer hover:bg-blue-50 text-gray-600 text-sm items-center gap-x-4 ${Menu.gap ? 'mt-9' : 'mt-2'} ${index === getTabIndex && 'bg-blue-100'} `}
-                            >
-                                <span
-                                    className={` origin-left duration-200`}
-                                >
-                                    {Menu.title}
-                                </span>
-                            </button>
-                        ))}
+                        {
+                            MenuTabs.map((Menu, index) => {
+                                if (Menu.title === 'Pendaftaran' && kelabProvider.isMaster === false) {
+                                    return null;
+                                }
+                                if (Menu.title === 'Permohonan' && kelabProvider.isMaster === true) {
+                                    return null;
+                                }
+                                return (
+                                    <button
+                                        key={index}
+                                        onClick={() => menuTabOnClick(index)}
+                                        className={`flex  rounded-md p-2 cursor-pointer hover:bg-blue-50 text-gray-600 text-sm items-center gap-x-4 ${Menu.gap ? 'mt-9' : 'mt-2'} ${index === getTabIndex && 'bg-blue-100'} `}
+                                    >
+                                        <span
+                                            className={` origin-left duration-200`}
+                                        >
+                                            {Menu.title}
+                                        </span>
+                                    </button>
+                                )
+                            })
+                        }
                     </ul>
                 </div>
                 <div className="h-screen flex-1">

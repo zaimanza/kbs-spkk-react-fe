@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
-export const masterKertasKerjaFindAll = gql`
-query MasterKertasKerjaFindAll {
-  masterKertasKerjaFindAll {
+export const masterUpdateKertasKerjaOne = gql`
+query MasterUpdateKertasKerjaOne($kertasKerjaStatus: String!, $id: String!) {
+  masterUpdateKertasKerjaOne(kertas_kerja_status: $kertasKerjaStatus, _id: $id) {
     _id
     kelab_id
     nama_program

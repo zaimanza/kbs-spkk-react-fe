@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-export default function TableOneAdmin({ isCheck, setIsCheck, titleCheck, setTitleCheck, titles, products, options, isCheckboxOn, tableKey, isShowId }) {
+export default function TableOneAdmin({ isCheck, setIsCheck, titleCheck, setTitleCheck, titles, products, options, isCheckboxOn, tableKey, isShowId, changeKertasKerjaStatus }) {
     const onCheckboxClick = (e) => {
         const { name, id, checked } = e.target
         if (name === "allSelect") {
@@ -58,7 +58,7 @@ export default function TableOneAdmin({ isCheck, setIsCheck, titleCheck, setTitl
 
                             <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                                 {titles ? (
-                                    <thead className="text-xs text-gray-700 capitalize bg-gray-100">
+                                    <thead className="text-xs text-gray-700 capitalize bg-white">
                                         <tr>
                                             {isCheckboxOn && (titleCheck === false || titleCheck) && (typeof setTitleCheck === "function") ? (
                                                 <th scope="col" className="p-4">
@@ -89,14 +89,14 @@ export default function TableOneAdmin({ isCheck, setIsCheck, titleCheck, setTitl
 
                                             for (const [key, value] of Object.entries(product)) {
                                                 //if isShowId 
-                                                if (key === tableKey && isShowId) {
+                                                if (key === tableKey && isShowId && key !== "kertas_kerja_status") {
                                                     columns.push((
                                                         <th key={key} scope="row" className="px-6 py-4 font-medium text-gray-900  whitespace-nowrap">
                                                             {value}
                                                         </th>)
                                                     )
                                                 }
-                                                else if (key !== tableKey) {
+                                                else if (key !== tableKey && key !== "kertas_kerja_status") {
                                                     columns.push((
                                                         <th key={key} scope="row" className="px-6 py-4 font-medium text-gray-900  whitespace-nowrap">
                                                             {value}
@@ -127,11 +127,23 @@ export default function TableOneAdmin({ isCheck, setIsCheck, titleCheck, setTitl
                                                         !(product.kertas_kerja_status) ?
                                                             <th scope="row" className="px-6 py-4 font-medium text-gray-900  whitespace-nowrap">
                                                                 <div className="inline-flex shadow-md hover:shadow-lg focus:shadow-lg" role="group">
-                                                                    <button type="button" className="rounded-l inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase hover:bg-blue-700 focus:bg-blue-700 focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out">Decline</button>
-                                                                    <button type="button" className=" rounded-r inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase hover:bg-blue-700 focus:bg-blue-700 focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out">Accept</button>
+                                                                    <button onClick={
+                                                                        () => changeKertasKerjaStatus({
+                                                                            kertasKerjaStatus: "decline",
+                                                                            id: product._id,
+                                                                        })
+                                                                    } type="button" className="rounded-l inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase hover:bg-blue-700 focus:bg-blue-700 focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out">Decline</button>
+                                                                    <button onClick={
+                                                                        () => changeKertasKerjaStatus({
+                                                                            kertasKerjaStatus: "accept",
+                                                                            id: product._id,
+                                                                        })
+                                                                    } type="button" className=" rounded-r inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase hover:bg-blue-700 focus:bg-blue-700 focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out">Accept</button>
                                                                 </div>
                                                             </th>
-                                                            : <div>{product.kertas_kerja_status ?? ""}</div>
+                                                            : <th scope="row" className="px-6 py-4 font-medium text-gray-900  whitespace-nowrap">
+                                                                {product.kertas_kerja_status ?? ""}
+                                                            </th>
                                                     }
                                                 </tr>
                                             )

@@ -13,6 +13,7 @@ query KertasKerjaFindOneById($kertasKerjaFindOneByIdId: String!) {
     nombor_matrik_pengarah
     nombor_tel_pengarah
     fakulti
+    kertas_kerja_status
   }
 }
 `

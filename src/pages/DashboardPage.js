@@ -11,7 +11,7 @@ const DashboardPage = () => {
     const [isCheck, setIsCheck] = useState([])
     const [titleCheck, setTitleCheck] = useState()
     const [getKertasKerjaListState, setKertasKerjaListState] = useState([])
-    const { kelabKertasKerjaFindAllFunction, masterKertasKerjaFindAllFunction } = useKertasKerjaModule()
+    const { kelabKertasKerjaFindAllFunction, masterKertasKerjaFindAllFunction, masterUpdateKertasKerjaOneFunction } = useKertasKerjaModule()
 
     const fetchData = async () => {
 
@@ -31,6 +31,13 @@ const DashboardPage = () => {
         fetchData();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
+    const changeKertasKerjaStatus = async (status) => {
+        const returnData = await masterUpdateKertasKerjaOneFunction(status)
+        // if success update
+        if (returnData)
+            fetchData();
+    }
 
 
     if (kelabProvider.isMaster === true) {
@@ -59,6 +66,7 @@ const DashboardPage = () => {
                         ]}
                         products={getKertasKerjaListState ?? []}
                         options={(<div></div>)}
+                        changeKertasKerjaStatus={changeKertasKerjaStatus}
                     />
                 </div>
             </div>
@@ -85,6 +93,7 @@ const DashboardPage = () => {
                             "nombor_matrik_pengarah",
                             "nombor_tel_pengarah",
                             "fakulti",
+                            "status",
                         ]}
                         products={getKertasKerjaListState ?? []}
                         options={(<div></div>)}

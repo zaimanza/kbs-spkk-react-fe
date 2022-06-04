@@ -6,6 +6,8 @@ import useKertasKerjaModule from '../modules/useKertasKerjaModule'
 const KertasKerjaPage = () => {
     const { id } = useParams()
 
+    const [getPdfUrl, setPdfUrl] = useState()
+
     const { kertasKerjaFindOneByIdFunction } = useKertasKerjaModule()
 
     const fetchData = async () => {
@@ -16,6 +18,7 @@ const KertasKerjaPage = () => {
             "kertasKerjaFindOneByIdId": id
         })
         console.log(response.s3_upload_url)
+        setPdfUrl(response.s3_upload_url)
 
     }
 
@@ -59,20 +62,29 @@ const KertasKerjaPage = () => {
                     <button onClick={changePageNext}>Next Page</button>
                 }
             </div> */}
-            <div>
-                <Document file="/sample.pdf" onLoadSuccess={onDocumentLoadSuccess}>
-                    {Array.from(
-                        new Array(numPages),
-                        (el, index) => (
-                            <Page
-                                key={`page_${index + 1}`}
-                                pageNumber={index + 1}
-                            />
-                        )
-                    )}
-                </Document>
+
+            <div className="py-8 px-8 bg-black">
+                <div className=" w-full space-y-8">
+                    <Document
+                        // file="/sample.pdf"
+                        file={{
+                            url: getPdfUrl,
+                        }}
+                        onLoadSuccess={onDocumentLoadSuccess}
+                    >
+                        {Array.from(
+                            new Array(numPages),
+                            (el, index) => (
+                                <Page
+                                    key={`page_${index + 1}`}
+                                    pageNumber={index + 1}
+                                />
+                            )
+                        )}
+                    </Document>
+                </div>
+                {/* </center> */}
             </div>
-            {/* </center> */}
         </div>
     )
 }

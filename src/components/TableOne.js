@@ -53,12 +53,17 @@ export default function TableOne({ isCheck, setIsCheck, titleCheck, setTitleChec
                     (isShowId === false && (products.length > 0 ? products[0]?.toString().length : 0) > titles.length) ||
                     (isShowId === true && (products.length > 0 ? products[0]?.toString().length : 0) === titles.length)
                 ) ? (
-                    <div className="shadow-md ">
+                    <div className="shadow-md bg-white">
+                        {options ? (
+                            <div className="w-[12rem] p-4 bg-white rounded-t-md">
+                                {options}
+                            </div>
+                        ) : null}
                         <div className={` overflow-x-auto ${options ? "" : "rounded-t-md"}`}>
 
                             <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                                 {titles ? (
-                                    <thead className="text-xs text-gray-700 capitalize bg-gray-100">
+                                    <thead className="text-xs text-gray-700 capitalize bg-white">
                                         <tr>
                                             {isCheckboxOn && (titleCheck === false || titleCheck) && (typeof setTitleCheck === "function") ? (
                                                 <th scope="col" className="p-4">
@@ -89,14 +94,14 @@ export default function TableOne({ isCheck, setIsCheck, titleCheck, setTitleChec
 
                                             for (const [key, value] of Object.entries(product)) {
                                                 //if isShowId 
-                                                if (key === tableKey && isShowId && key !== "s3_upload_url") {
+                                                if (key === tableKey && isShowId && key !== "s3_upload_url" && key !== "komen") {
                                                     columns.push((
                                                         <th key={key} scope="row" className="px-6 py-4 font-medium text-gray-900  whitespace-nowrap">
                                                             {value}
                                                         </th>)
                                                     )
                                                 }
-                                                else if (key !== tableKey && key !== "s3_upload_url") {
+                                                else if (key !== tableKey && key !== "s3_upload_url" && key !== "komen") {
                                                     columns.push((
                                                         <th key={key} scope="row" className="px-6 py-4 font-medium text-gray-900  whitespace-nowrap">
                                                             {value}

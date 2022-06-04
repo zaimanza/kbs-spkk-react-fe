@@ -94,14 +94,14 @@ export default function TableOneAdmin({ isCheck, setIsCheck, titleCheck, setTitl
 
                                             for (const [key, value] of Object.entries(product)) {
                                                 //if isShowId 
-                                                if (key === tableKey && isShowId && key !== "kertas_kerja_status" && key !== "s3_upload_url") {
+                                                if (key === tableKey && isShowId && key !== "kertas_kerja_status" && key !== "s3_upload_url" && key !== "komen") {
                                                     columns.push((
                                                         <th key={key} scope="row" className="px-6 py-4 font-medium text-gray-900  whitespace-nowrap">
                                                             {value}
                                                         </th>)
                                                     )
                                                 }
-                                                else if (key !== tableKey && key !== "kertas_kerja_status" && key !== "s3_upload_url") {
+                                                else if (key !== tableKey && key !== "kertas_kerja_status" && key !== "s3_upload_url" && key !== "komen") {
                                                     columns.push((
                                                         <th key={key} scope="row" className="px-6 py-4 font-medium text-gray-900  whitespace-nowrap">
                                                             {value}

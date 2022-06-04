@@ -15,6 +15,7 @@ mutation KertasKerjaAdd($kertasKerja: kertasKerjaReq!) {
     fakulti
     kertas_kerja_status
     s3_upload_url
+    komen
   }
 }
 `

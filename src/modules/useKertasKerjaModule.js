@@ -3,7 +3,8 @@ import {
     kelabKertasKerjaFindAll,
     kertasKerjaFindOneById,
     masterKertasKerjaFindAll,
-    masterUpdateKertasKerjaOne
+    masterUpdateKertasKerjaOne,
+    masterUpdateKomenKertasKerjaOne
 } from "../servers/graphql/schema";
 import useGraphql from "../servers/graphql/useGraphql";
 
@@ -68,12 +69,22 @@ function useKertasKerjaModule() {
         return data?.masterUpdateKertasKerjaOne
     }
 
+    const masterUpdateKomenKertasKerjaOneFunction = async (variables) => {
+        const data = await query({
+            query: masterUpdateKomenKertasKerjaOne,
+            variables: variables
+        })
+
+        return data?.masterUpdateKomenKertasKerjaOne
+    }
+
     return {
         kertasKerjaAddFunction,
         kelabKertasKerjaFindAllFunction,
         kertasKerjaFindOneByIdFunction,
         masterKertasKerjaFindAllFunction,
         masterUpdateKertasKerjaOneFunction,
+        masterUpdateKomenKertasKerjaOneFunction,
     }
 }
 export default useKertasKerjaModule

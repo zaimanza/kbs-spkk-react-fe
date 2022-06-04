@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { Document, Page } from 'react-pdf/dist/esm/entry.webpack';
 import useKertasKerjaModule from '../modules/useKertasKerjaModule'
+import KomenKertasKerja from '../components/KomenKertasKerja';
 
 const KertasKerjaPage = () => {
     const { id } = useParams()
 
     const [getPdfUrl, setPdfUrl] = useState()
+    const [getKErtasKerjaData, setKErtasKerjaData] = useState()
 
     const { kertasKerjaFindOneByIdFunction } = useKertasKerjaModule()
 
@@ -17,6 +19,7 @@ const KertasKerjaPage = () => {
         const response = await kertasKerjaFindOneByIdFunction({
             "kertasKerjaFindOneByIdId": id
         })
+        setKErtasKerjaData(response)
         console.log(response.s3_upload_url)
         setPdfUrl(response.s3_upload_url)
 
@@ -28,11 +31,11 @@ const KertasKerjaPage = () => {
     }, []);
 
     const [numPages, setNumPages] = useState(null);
-    const [pageNumber, setPageNumber] = useState(1);
+    // const [pageNumber, setPageNumber] = useState(1);
 
     function onDocumentLoadSuccess({ numPages }) {
         setNumPages(numPages);
-        setPageNumber(1);
+        // setPageNumber(1);
     }
 
     // function changePage(offSet) {
@@ -47,44 +50,36 @@ const KertasKerjaPage = () => {
     //     changePage(+1)
     // }
 
-    return (
-        <div className="App">
-            {/* <div className="">
-                <Document file="/sample.pdf" onLoadSuccess={onDocumentLoadSuccess}>
-                    <Page height="600" pageNumber={pageNumber} />
-                </Document>
-                <p> Page {pageNumber} of {numPages}</p>
-                {pageNumber > 1 &&
-                    <button onClick={changePageBack}>Previous Page</button>
-                }
-                {
-                    pageNumber < numPages &&
-                    <button onClick={changePageNext}>Next Page</button>
-                }
-            </div> */}
 
-            <div className="py-8 px-8 bg-black">
-                <div className=" w-full space-y-8">
-                    <Document
-                        // file="/sample.pdf"
-                        file={{
-                            url: getPdfUrl,
-                        }}
-                        onLoadSuccess={onDocumentLoadSuccess}
-                    >
-                        {Array.from(
-                            new Array(numPages),
-                            (el, index) => (
-                                <Page
-                                    key={`page_${index + 1}`}
-                                    pageNumber={index + 1}
-                                />
-                            )
-                        )}
-                    </Document>
+    return (
+        <div className="bg-black h-screen">
+            <center>
+                <div className="py-8 px-8 bg-black">
+                    <div className=" w-full grid grid-cols-2 gap-[1rem] ">
+                        <Document
+                            file={{
+                                url: getPdfUrl,
+                            }}
+                            onLoadSuccess={onDocumentLoadSuccess}>
+                            {Array.from(
+                                new Array(numPages),
+                                (el, index) => (
+                                    <Page
+                                        key={`page_${index + 1}`}
+                                        pageNumber={index + 1}
+                                    />
+                                )
+                            )}
+                        </Document>
+                        <KomenKertasKerja
+                            id={id}
+                            fetchData={() => fetchData()}
+                            getKErtasKerjaData={getKErtasKerjaData}
+                        />
+                    </div>
                 </div>
-                {/* </center> */}
-            </div>
+            </center>
+
         </div>
     )
 }

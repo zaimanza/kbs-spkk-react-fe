@@ -15,6 +15,7 @@ query MasterKertasKerjaFindAll {
     fakulti
     kertas_kerja_status
     s3_upload_url
+    komen
   }
 }
 `

@@ -14,6 +14,7 @@ query KelabKertasKerjaFindAll($kelabId: String!) {
     nombor_tel_pengarah
     fakulti
     kertas_kerja_status
+    s3_upload_url
   }
 }
 `

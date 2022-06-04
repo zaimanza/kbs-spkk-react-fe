@@ -53,7 +53,12 @@ export default function TableOneAdmin({ isCheck, setIsCheck, titleCheck, setTitl
                     (isShowId === false && (products.length > 0 ? products[0]?.toString().length : 0) > titles.length) ||
                     (isShowId === true && (products.length > 0 ? products[0]?.toString().length : 0) === titles.length)
                 ) ? (
-                    <div className="shadow-md ">
+                    <div className="shadow-md bg-white">
+                        {options ? (
+                            <div className="w-[12rem] p-4 bg-white rounded-t-md">
+                                {options}
+                            </div>
+                        ) : null}
                         <div className={` overflow-x-auto ${options ? "" : "rounded-t-md"}`}>
 
                             <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -89,14 +94,14 @@ export default function TableOneAdmin({ isCheck, setIsCheck, titleCheck, setTitl
 
                                             for (const [key, value] of Object.entries(product)) {
                                                 //if isShowId 
-                                                if (key === tableKey && isShowId && key !== "kertas_kerja_status") {
+                                                if (key === tableKey && isShowId && key !== "kertas_kerja_status" && key !== "s3_upload_url") {
                                                     columns.push((
                                                         <th key={key} scope="row" className="px-6 py-4 font-medium text-gray-900  whitespace-nowrap">
                                                             {value}
                                                         </th>)
                                                     )
                                                 }
-                                                else if (key !== tableKey && key !== "kertas_kerja_status") {
+                                                else if (key !== tableKey && key !== "kertas_kerja_status" && key !== "s3_upload_url") {
                                                     columns.push((
                                                         <th key={key} scope="row" className="px-6 py-4 font-medium text-gray-900  whitespace-nowrap">
                                                             {value}
@@ -132,16 +137,16 @@ export default function TableOneAdmin({ isCheck, setIsCheck, titleCheck, setTitl
                                                                             kertasKerjaStatus: "decline",
                                                                             id: product._id,
                                                                         })
-                                                                    } type="button" className="rounded-l inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase hover:bg-blue-700 focus:bg-blue-700 focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out">Decline</button>
+                                                                    } type="button" className="rounded-l inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase hover:bg-red-700 focus:bg-red-700 focus:outline-none focus:ring-0 active:bg-red-800 transition duration-150 ease-in-out">Decline</button>
                                                                     <button onClick={
                                                                         () => changeKertasKerjaStatus({
-                                                                            kertasKerjaStatus: "accept",
+                                                                            kertasKerjaStatus: "accepted",
                                                                             id: product._id,
                                                                         })
-                                                                    } type="button" className=" rounded-r inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase hover:bg-blue-700 focus:bg-blue-700 focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out">Accept</button>
+                                                                    } type="button" className=" rounded-r inline-block px-6 py-2.5 bg-green-600 text-white font-medium text-xs leading-tight uppercase hover:bg-green-700 focus:bg-green-700 focus:outline-none focus:ring-0 active:bg-green-800 transition duration-150 ease-in-out">Accept</button>
                                                                 </div>
                                                             </th>
-                                                            : <th scope="row" className="px-6 py-4 font-medium text-gray-900  whitespace-nowrap">
+                                                            : <th scope="row" className={`px-6 py-4 font-medium ${product.kertas_kerja_status === "accepted" ? "text-green-900" : "text-red-900"}  whitespace-nowrap`}>
                                                                 {product.kertas_kerja_status ?? ""}
                                                             </th>
                                                     }

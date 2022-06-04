@@ -7,8 +7,8 @@ function useApolloClient() {
 
     const httpLink = createHttpLink(
         {
-            // uri: "http://localhost:4001/graphql",
-            uri: "https://dropgo.herokuapp.com/graphql",
+            uri: "http://localhost:4001/graphql",
+            // uri: "https://dropgo.herokuapp.com/graphql",
 
         });
 

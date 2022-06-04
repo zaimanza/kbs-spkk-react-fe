@@ -89,14 +89,14 @@ export default function TableOne({ isCheck, setIsCheck, titleCheck, setTitleChec
 
                                             for (const [key, value] of Object.entries(product)) {
                                                 //if isShowId 
-                                                if (key === tableKey && isShowId) {
+                                                if (key === tableKey && isShowId && key !== "s3_upload_url") {
                                                     columns.push((
                                                         <th key={key} scope="row" className="px-6 py-4 font-medium text-gray-900  whitespace-nowrap">
                                                             {value}
                                                         </th>)
                                                     )
                                                 }
-                                                else if (key !== tableKey) {
+                                                else if (key !== tableKey && key !== "s3_upload_url") {
                                                     columns.push((
                                                         <th key={key} scope="row" className="px-6 py-4 font-medium text-gray-900  whitespace-nowrap">
                                                             {value}

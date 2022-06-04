@@ -11,6 +11,7 @@ import {
 import SignupPage from './pages/SignupPage';
 import LoginPage from './pages/LoginPage';
 import HomePage from './pages/HomePage';
+import KertasKerjaPage from './pages/KertasKerjaPage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -21,6 +22,7 @@ root.render(
           <Route path="/" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/home" element={<HomePage />} />
+          <Route path="/kertasKerja/:id" element={<KertasKerjaPage />} />
         </Routes>
       </BrowserRouter>
     </Provider>

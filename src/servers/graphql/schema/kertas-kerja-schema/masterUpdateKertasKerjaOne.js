@@ -14,6 +14,7 @@ query MasterUpdateKertasKerjaOne($kertasKerjaStatus: String!, $id: String!) {
     nombor_tel_pengarah
     fakulti
     kertas_kerja_status
+    s3_upload_url
   }
 }
 `

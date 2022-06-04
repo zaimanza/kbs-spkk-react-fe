@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import Input from '../components/Input'
 import useKertasKerjaModule from '../modules/useKertasKerjaModule'
+import useAwsS3 from '../services/useAwsS3'
 
 const PermohonanPage = ({ setTabIndex }) => {
     const { kertasKerjaAddFunction } = useKertasKerjaModule()
@@ -13,9 +14,10 @@ const PermohonanPage = ({ setTabIndex }) => {
     const [getNomborMatrikPengarahState, setNomborMatrikPengarahState] = useState("")
     const [getNomborTelPengarahState, setNomborTelPengarahState] = useState("")
     const [getFakultiState, setFakultiState] = useState("")
+    const [getS3UploadUrl, setS3UploadUrl] = useState("")
 
     const kelabProvider = useSelector((state) => state.kelab.value)
-
+    const { awsS3UploadFile } = useAwsS3()
 
     const handleSubmit = async () => {
 
@@ -27,7 +29,8 @@ const PermohonanPage = ({ setTabIndex }) => {
             getEmailPengarahState !== "" &&
             getNomborMatrikPengarahState !== "" &&
             getNomborTelPengarahState !== "" &&
-            getFakultiState !== "") {
+            getFakultiState !== "" &&
+            getS3UploadUrl !== "") {
 
             const savedKertasKerja = await kertasKerjaAddFunction({
                 "kelab_id": kelabProvider.kelab_id,
@@ -39,6 +42,7 @@ const PermohonanPage = ({ setTabIndex }) => {
                 "nombor_matrik_pengarah": getNomborMatrikPengarahState,
                 "nombor_tel_pengarah": getNomborTelPengarahState,
                 "fakulti": getFakultiState,
+                "s3_upload_url": getS3UploadUrl,
             });
 
             if (savedKertasKerja) {
@@ -55,16 +59,32 @@ const PermohonanPage = ({ setTabIndex }) => {
         }
     }
 
+    const uploadPDF = async (e) => {
+        try {
+            console.log("start_upload_pdf")
+            const file = e.target.files[0];
+            const bodyFormData = new FormData();
+            bodyFormData.append('file', file);
+
+            var reader = new FileReader();
+            reader.onload = await async function () {
+                setS3UploadUrl(await awsS3UploadFile(file))
+                // setValue(imageField, reader.result)
+            }
+            reader.readAsDataURL(e.target.files[0]);
+        } catch (err) {
+        }
+    }
+
     return (
         <div className="py-8 px-8">
-            <div className=" w-full space-y-8">
-                <div className="mb-10">
+            <div className=" w-full">
+                <div className="">
                     <h2 className="text-center text-3xl font-extrabold text-gray-900">
                         {"PERMOHONAN KERTAS KERJA"}
                     </h2>
                 </div>
-
-                <div className="mt-8">
+                <div className="">
                     <Input
                         handleChange={(e) => setNamaProgramState(e.target.value)}
                         value={getNamaProgramState}
@@ -153,12 +173,18 @@ const PermohonanPage = ({ setTabIndex }) => {
                         isRequired={true}
                         placeholder={"Fakulti"}
                     />
+                    {/* pdf file here */}
+                    {/* <button
+                        className="group relative w-full flex justify-center py-2 px-6 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 mt-10"
+                    > */}
+                    {"Kertas Kerja (.PDF): "}
+                    <input type="file" onChange={(e) => uploadPDF(e)} />
+                    {/* </button> */}
 
                     <button
                         className="group relative w-full flex justify-center py-2 px-6 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 mt-10"
                         onClick={() => handleSubmit()}
                     >
-
                         {"Tambah"}
                     </button>
                 </div>

@@ -73,13 +73,13 @@ const HomePage = () => {
 
             <div className="flex">
                 <div
-                    className={`w-72 bg-white h-screen p-5  pt-8 relative duration-300 shadow`}
+                    className={`w-72 bg-blue-600 h-screen p-5  pt-8 relative duration-300 shadow`}
                 >
                     <div className="flex gap-x-4 items-center">
                         <img
                             alt=""
-                            className="h-32 w-32"
-                            src="/logo_black.png" />
+                            className="object-contain "
+                            src="/logo.png" />
                     </div>
                     <ul className="pt-6">
                         {
@@ -94,7 +94,7 @@ const HomePage = () => {
                                     <button
                                         key={index}
                                         onClick={() => menuTabOnClick(index)}
-                                        className={`flex  rounded-md p-2 cursor-pointer hover:bg-blue-50 text-gray-600 text-sm items-center gap-x-4 ${Menu.gap ? 'mt-9' : 'mt-2'} ${index === getTabIndex && 'bg-blue-100'} `}
+                                        className={`flex  rounded-md p-2 cursor-pointer hover:bg-blue-300 text-white text-sm items-center gap-x-4 ${Menu.gap ? 'mt-9' : 'mt-2'} ${index === getTabIndex && 'bg-blue-300'} `}
                                     >
                                         <span
                                             className={` origin-left duration-200`}
@@ -108,10 +108,10 @@ const HomePage = () => {
                     </ul>
                 </div>
                 <div className="h-screen flex-1">
-                    <nav className="border-gray-200 px-2 sm:px-4 py-2.5 bg-blue-600">
+                    <nav className="border-gray-200 px-2 sm:px-4 py-2.5 bg-white text-black">
                         <div className="container flex flex-wrap justify-between items-center mx-auto">
                             <a href="https://flowbite.com" className="flex items-center">
-                                <span className="self-center text-xl font-semibold whitespace-nowrap text-white">{MenuTabs[getTabIndex].title}</span>
+                                <span className="self-center text-xl whitespace-nowrap text-blue-600 uppercase font-extrabold">{MenuTabs[getTabIndex].title}</span>
                             </a>
                             <button data-collapse-toggle="mobile-menu" type="button" className="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="mobile-menu" aria-expanded="false">
                                 <span className="sr-only">Open main menu</span>
@@ -126,7 +126,7 @@ const HomePage = () => {
                                     <li>
                                         <button
                                             onClick={logoutOnClick}
-                                            className="block py-2 pr-4 pl-3  border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 text-white"
+                                            className="block py-2 pr-4 pl-3  border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 "
                                         >
                                             Logout
                                         </button>

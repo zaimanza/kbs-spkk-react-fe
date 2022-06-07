@@ -2,6 +2,7 @@
 // import imageCompression from 'browser-image-compression';
 import { kertasKerjaS3UploadUrl } from '../servers/graphql/schema';
 import useGraphql from '../servers/graphql/useGraphql';
+// import imageCompression from 'browser-image-compression';
 
 const useAwsS3 = () => {
     const { query } = useGraphql()

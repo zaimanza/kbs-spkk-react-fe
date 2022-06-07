@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Input from '../components/Input'
 import TableOne from '../components/TableOne'
 import useKelabModule from '../modules/useKelabModule'
+import useAwsS3 from '../services/useAwsS3'
 
 const PendaftaranPage = () => {
     const { kelabAddFunction, kelabFindAllFunction } = useKelabModule()
@@ -11,6 +12,12 @@ const PendaftaranPage = () => {
     const [getKelabEmailState, setKelabEmailState] = useState("")
     const [getKelabPasswordState, setKelabPasswordState] = useState("")
     const [getKelabListState, setKelabListState] = useState([])
+    const [isCheck, setIsCheck] = useState([])
+    const [titleCheck, setTitleCheck] = useState()
+    const { awsS3UploadFile } = useAwsS3()
+    // eslint-disable-next-line no-unused-vars
+    const [getS3UploadUrl, setS3UploadUrl] = useState("")
+    const [getImageViewData, setImageViewData] = useState("");
 
     const fetchData = async () => {
         const response = await kelabFindAllFunction()
@@ -38,6 +45,7 @@ const PendaftaranPage = () => {
                 "kelab_tel": getKelabTelState,
                 "kelab_email": getKelabEmailState,
                 "kelab_password": getKelabPasswordState,
+                "s3_upload_url": getS3UploadUrl,
             });
             if (savedKelab) {
                 setKelabIdState("")
@@ -51,8 +59,23 @@ const PendaftaranPage = () => {
         }
     }
 
-    const [isCheck, setIsCheck] = useState([])
-    const [titleCheck, setTitleCheck] = useState()
+    const uploadImg = async (e) => {
+        try {
+            console.log("start_upload_pdf")
+            const file = e.target.files[0];
+            const bodyFormData = new FormData();
+            bodyFormData.append('file', file);
+
+            var reader = new FileReader();
+            reader.onload = await async function () {
+                setS3UploadUrl(await awsS3UploadFile(file))
+                setImageViewData(reader.result)
+                // setValue(imageField, reader.result)
+            }
+            reader.readAsDataURL(e.target.files[0]);
+        } catch (err) {
+        }
+    }
     return (
         <div className="py-8 px-8">
             <div className=" w-full space-y-8">
@@ -118,6 +141,16 @@ const PendaftaranPage = () => {
                         isRequired={true}
                         placeholder={"Kata laluan"}
                     />
+
+
+                    {"Gambar profil (.png): "}
+                    <input type="file" onChange={(e) => uploadImg(e)} />
+                    {getImageViewData && (
+                        <img
+                            alt=""
+                            className="object-contain "
+                            src={getImageViewData} />
+                    )}
 
                     <button
                         className="group relative w-full flex justify-center py-2 px-6 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 mt-10"

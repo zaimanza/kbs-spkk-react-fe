@@ -10,6 +10,7 @@ mutation KelabLogin($kelabId: String!, $kelabPassword: String!) {
     kelab_email
     kelab_password
     isMaster
+    s3_upload_url
   }
 }
 `

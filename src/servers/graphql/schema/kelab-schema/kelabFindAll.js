@@ -10,6 +10,7 @@ query KelabFindAll {
     kelab_email
     kelab_password
     isMaster
+    s3_upload_url
   }
 }
 `

@@ -7,6 +7,7 @@ const ProfilPage = ({ setTabIndex }) => {
     const kelabProvider = useSelector((state) => state.kelab.value)
 
 
+    console.log(kelabProvider)
     return (
         <div className="py-8 px-8">
             <div className=" w-full space-y-8">
@@ -15,8 +16,13 @@ const ProfilPage = ({ setTabIndex }) => {
                         {"PROFIL"}
                     </h2>
                 </div>
-
                 <div className="mt-8">
+                    {kelabProvider?.s3_upload_url && (
+                        <img
+                            alt=""
+                            className="object-contain "
+                            src={kelabProvider?.s3_upload_url} />
+                    )}
                     <InputDisable
                         handleChange={(e) => { }}
                         value={kelabProvider.kelab_id}

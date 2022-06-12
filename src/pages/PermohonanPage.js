@@ -8,7 +8,6 @@ const PermohonanPage = ({ setTabIndex }) => {
     const { kertasKerjaAddFunction } = useKertasKerjaModule()
     const [getNamaProgramState, setNamaProgramState] = useState("")
     const [getPengarahProgramState, setPengarahProgramState] = useState("")
-    const [getKlusterProgramState, setKlusterProgramState] = useState("")
     const [getTarikhProgramState, setTarikhProgramState] = useState("")
     const [getEmailPengarahState, setEmailPengarahState] = useState("")
     const [getNomborMatrikPengarahState, setNomborMatrikPengarahState] = useState("")
@@ -24,7 +23,6 @@ const PermohonanPage = ({ setTabIndex }) => {
         // await kelabFindAllFunction()
         if (getNamaProgramState !== "" &&
             getPengarahProgramState !== "" &&
-            getKlusterProgramState !== "" &&
             getTarikhProgramState !== "" &&
             getEmailPengarahState !== "" &&
             getNomborMatrikPengarahState !== "" &&
@@ -36,7 +34,6 @@ const PermohonanPage = ({ setTabIndex }) => {
                 "kelab_id": kelabProvider.kelab_id,
                 "nama_program": getNamaProgramState,
                 "pengarah_program": getPengarahProgramState,
-                "kluster_program": getKlusterProgramState,
                 "tarikh_program": getTarikhProgramState,
                 "email_pengarah": getEmailPengarahState,
                 "nombor_matrik_pengarah": getNomborMatrikPengarahState,
@@ -48,7 +45,6 @@ const PermohonanPage = ({ setTabIndex }) => {
             if (savedKertasKerja) {
                 setNamaProgramState("")
                 setPengarahProgramState("")
-                setKlusterProgramState("")
                 setTarikhProgramState("")
                 setEmailPengarahState("")
                 setNomborMatrikPengarahState("")
@@ -107,17 +103,7 @@ const PermohonanPage = ({ setTabIndex }) => {
                         isRequired={true}
                         placeholder={"Pengarah Program"}
                     />
-                    <Input
-                        handleChange={(e) => setKlusterProgramState(e.target.value)}
-                        value={getKlusterProgramState}
-                        labelText={"Kluster Program"}
-                        labelFor={"kluster_program"}
-                        id={"kluster_program"}
-                        name={"kluster_program"}
-                        type={"text"}
-                        isRequired={true}
-                        placeholder={"Kluster Program"}
-                    />
+
                     <Input
                         handleChange={(e) => setTarikhProgramState(e.target.value)}
                         value={getTarikhProgramState}
@@ -190,7 +176,6 @@ const PermohonanPage = ({ setTabIndex }) => {
                             onClick={() => {
                                 setNamaProgramState("")
                                 setPengarahProgramState("")
-                                setKlusterProgramState("")
                                 setTarikhProgramState("")
                                 setEmailPengarahState("")
                                 setNomborMatrikPengarahState("")

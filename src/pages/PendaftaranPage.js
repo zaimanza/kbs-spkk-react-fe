@@ -17,7 +17,9 @@ const PendaftaranPage = () => {
     const { awsS3UploadFile } = useAwsS3()
     // eslint-disable-next-line no-unused-vars
     const [getS3UploadUrl, setS3UploadUrl] = useState("")
-    const [getImageViewData, setImageViewData] = useState("");
+    const [getImageViewData, setImageViewData] = useState("")
+
+    var [getimageFileInput, setimageFileInput] = useState(null)
 
     const fetchData = async () => {
         const response = await kelabFindAllFunction()
@@ -54,6 +56,8 @@ const PendaftaranPage = () => {
                 setKelabEmailState("")
                 setKelabPasswordState("")
                 fetchData();
+                setimageFileInput(null)
+                setImageViewData("")
             }
 
         }
@@ -72,7 +76,8 @@ const PendaftaranPage = () => {
                 setImageViewData(reader.result)
                 // setValue(imageField, reader.result)
             }
-            reader.readAsDataURL(e.target.files[0]);
+            reader.readAsDataURL(e.target.files[0])
+            // setimageFileInput(e.target.files[0])
         } catch (err) {
         }
     }
@@ -137,19 +142,22 @@ const PendaftaranPage = () => {
                         labelFor={"kelab_password"}
                         id={"kelab_password"}
                         name={"kelab_password"}
-                        type={"text"}
+                        type={"password"}
                         isRequired={true}
                         placeholder={"Kata laluan"}
                     />
 
 
                     {"Gambar profil (.png): "}
-                    <input type="file" onChange={(e) => uploadImg(e)} />
+                    <input
+                        type="file"
+                        // value={getimageFileInput}
+                        onChange={(e) => uploadImg(e)}
+
+                    />
                     {getImageViewData && (
-                        <img
-                            alt=""
-                            className="object-contain "
-                            src={getImageViewData} />
+
+                        <img className=" object-cover w-72 h-72 mr-16 rounded-full" src={getImageViewData} alt="profile" />
                     )}
 
                     <button

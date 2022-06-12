@@ -53,17 +53,17 @@ export default function TableOne({ isCheck, setIsCheck, titleCheck, setTitleChec
                     (isShowId === false && (products.length > 0 ? products[0]?.toString().length : 0) > titles.length) ||
                     (isShowId === true && (products.length > 0 ? products[0]?.toString().length : 0) === titles.length)
                 ) ? (
-                    <div className="shadow-md bg-white">
+                    <div className="shadow-md bg-white w-[90rem]">
                         {options ? (
                             <div className="w-[12rem] p-4 bg-white rounded-t-md">
                                 {options}
                             </div>
                         ) : null}
-                        <div className={` overflow-x-auto ${options ? "" : "rounded-t-md"}`}>
+                        <div className={`overflow-x-scroll ${options ? "" : "rounded-t-md"}`}>
 
                             <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                                 {titles ? (
-                                    <thead className="text-xs text-gray-700 capitalize bg-white">
+                                    <thead className="text-sm text-gray-700 capitalize bg-white">
                                         <tr>
                                             {isCheckboxOn && (titleCheck === false || titleCheck) && (typeof setTitleCheck === "function") ? (
                                                 <th scope="col" className="p-4">
@@ -110,7 +110,7 @@ export default function TableOne({ isCheck, setIsCheck, titleCheck, setTitleChec
                                                 }
                                             }
                                             return (
-                                                <tr key={product._id} className="text-xs bg-white border-b  hover:bg-gray-50 ">
+                                                <tr key={product._id} className="text-sm bg-white border-b  hover:bg-gray-50 ">
                                                     {/* isCheckBox? */}
                                                     {isCheckboxOn && isCheck && (typeof setIsCheck === "function") ? (
                                                         <td className="w-4 p-4">

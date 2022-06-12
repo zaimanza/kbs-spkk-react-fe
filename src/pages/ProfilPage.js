@@ -6,7 +6,6 @@ const ProfilPage = ({ setTabIndex }) => {
 
     const kelabProvider = useSelector((state) => state.kelab.value)
 
-
     console.log(kelabProvider)
     return (
         <div className="py-8 px-8">
@@ -16,68 +15,68 @@ const ProfilPage = ({ setTabIndex }) => {
                         {"PROFIL"}
                     </h2>
                 </div>
-                <div className="mt-8">
+                <div className="mt-8 flex">
                     {kelabProvider?.s3_upload_url && (
-                        <img
-                            alt=""
-                            className="object-contain "
-                            src={kelabProvider?.s3_upload_url} />
+
+                        <img className=" object-cover w-72 h-72 mr-16 rounded-full" src={kelabProvider?.s3_upload_url} alt="profile" />
                     )}
-                    <InputDisable
-                        handleChange={(e) => { }}
-                        value={kelabProvider.kelab_id}
-                        labelText={"ID"}
-                        labelFor={"kelab_id"}
-                        id={"kelab_id"}
-                        name={"kelab_id"}
-                        type={"text"}
-                        isRequired={true}
-                        placeholder={"ID"}
-                    />
-                    <InputDisable
-                        handleChange={(e) => { }}
-                        value={kelabProvider.kelab_email}
-                        labelText={"Email"}
-                        labelFor={"kelab_email"}
-                        id={"kelab_email"}
-                        name={"kelab_email"}
-                        type={"text"}
-                        isRequired={true}
-                        placeholder={"Email"}
-                    />
-                    <InputDisable
-                        handleChange={(e) => { }}
-                        value={kelabProvider.kelab_nama}
-                        labelText={"Nama"}
-                        labelFor={"kelab_nama"}
-                        id={"kelab_nama"}
-                        name={"kelab_nama"}
-                        type={"text"}
-                        isRequired={true}
-                        placeholder={"Nama"}
-                    />
-                    <InputDisable
-                        handleChange={(e) => { }}
-                        value={kelabProvider.kelab_password}
-                        labelText={"Kata Laluan"}
-                        labelFor={"kelab_password"}
-                        id={"kelab_password"}
-                        name={"kelab_password"}
-                        type={"text"}
-                        isRequired={true}
-                        placeholder={"Kata Laluan"}
-                    />
-                    <InputDisable
-                        handleChange={(e) => { }}
-                        value={kelabProvider.kelab_tel}
-                        labelText={"Nombor Telefon"}
-                        labelFor={"kelab_tel"}
-                        id={"kelab_tel"}
-                        name={"kelab_tel"}
-                        type={"text"}
-                        isRequired={true}
-                        placeholder={"Nombor Telefon"}
-                    />
+                    <div className='w-full'>
+                        <InputDisable
+                            handleChange={(e) => { }}
+                            value={kelabProvider.kelab_id}
+                            labelText={"ID"}
+                            labelFor={"kelab_id"}
+                            id={"kelab_id"}
+                            name={"kelab_id"}
+                            type={"text"}
+                            isRequired={true}
+                            placeholder={"ID"}
+                        />
+                        <InputDisable
+                            handleChange={(e) => { }}
+                            value={kelabProvider.kelab_email}
+                            labelText={"Email"}
+                            labelFor={"kelab_email"}
+                            id={"kelab_email"}
+                            name={"kelab_email"}
+                            type={"text"}
+                            isRequired={true}
+                            placeholder={"Email"}
+                        />
+                        <InputDisable
+                            handleChange={(e) => { }}
+                            value={kelabProvider.kelab_nama}
+                            labelText={"Nama"}
+                            labelFor={"kelab_nama"}
+                            id={"kelab_nama"}
+                            name={"kelab_nama"}
+                            type={"text"}
+                            isRequired={true}
+                            placeholder={"Nama"}
+                        />
+                        <InputDisable
+                            handleChange={(e) => { }}
+                            value={kelabProvider.kelab_password}
+                            labelText={"Kata Laluan"}
+                            labelFor={"kelab_password"}
+                            id={"kelab_password"}
+                            name={"kelab_password"}
+                            type={"text"}
+                            isRequired={true}
+                            placeholder={"Kata Laluan"}
+                        />
+                        <InputDisable
+                            handleChange={(e) => { }}
+                            value={kelabProvider.kelab_tel}
+                            labelText={"Nombor Telefon"}
+                            labelFor={"kelab_tel"}
+                            id={"kelab_tel"}
+                            name={"kelab_tel"}
+                            type={"text"}
+                            isRequired={true}
+                            placeholder={"Nombor Telefon"}
+                        />
+                    </div>
                 </div>
             </div>
         </div>

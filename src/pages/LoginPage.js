@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import useKelabModule from '../modules/useKelabModule'
 import AuthHeader from '../components/AuthHeader'
 import Input from '../components/Input'
+import BackgroundImage from '../bg_screen.jpg'
 import { useSelector, useDispatch } from "react-redux"
 import { kelabLoginReducer } from '../providers/kelabProvider'
 import { useNavigate } from 'react-router-dom'
@@ -49,10 +50,17 @@ const LoginPage = () => {
     }
 
     return (
-        <div className="min-h-full h-screen flex justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <div className={`min-h-full h-screen flex justify-center py-12 px-4 sm:px-6 lg:px-8 bg-no-repeat bg-cover bg-left`}
+            style={{
+                backgroundImage: "url(" + BackgroundImage + ")",
+                backgroundPosition: 'center',
+                backgroundSize: 'cover',
+                backgroundRepeat: 'no-repeat'
+            }}
+        >
             <div className="max-w-md w-full space-y-8">
                 <AuthHeader
-                    heading="Login to your account"
+                    heading=""
                     paragraph="Don't have an account yet? "
                     linkName="Signup"
                     linkUrl="/signup"
@@ -64,6 +72,7 @@ const LoginPage = () => {
                             handleChange={(e) => setKelabIdState(e.target.value)}
                             value={getKelabIdState}
                             labelText={"Nama ID"}
+                            labelColor={"text-white"}
                             labelFor={"nama_id"}
                             id={"nama_id"}
                             name={"nama_id"}
@@ -75,6 +84,7 @@ const LoginPage = () => {
                             handleChange={(e) => setPasswordState(e.target.value)}
                             value={getPasswordState}
                             labelText={"Kata laluan"}
+                            labelColor={"text-white"}
                             labelFor={"kata_laluan"}
                             id={"kata_laluan"}
                             name={"kata_laluan"}
@@ -85,7 +95,7 @@ const LoginPage = () => {
                     </div>
 
                     <button
-                        className="group relative w-full flex justify-center py-2 px-6 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 mt-10"
+                        className="group relative w-full flex justify-center py-2 px-6 border border-transparent text-xl font-medium rounded-md text-blue-600 bg-white hover:bg-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white mt-10"
                         onClick={() => handleSubmit()}
                     >
 

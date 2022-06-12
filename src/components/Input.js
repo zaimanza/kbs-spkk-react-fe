@@ -1,11 +1,12 @@
 
 
-const fixedInputClass = "rounded-md appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-purple-500 focus:border-purple-500 focus:z-10 sm:text-sm"
+const fixedInputClass = "rounded-md appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-purple-500 focus:border-purple-500 focus:z-10 sm:text-xl"
 
 const Input = ({
     handleChange,
     value,
     labelText,
+    labelColor,
     labelFor,
     id,
     name,
@@ -15,8 +16,8 @@ const Input = ({
     customClass
 }) => {
     return (
-        <div className="my-5">
-            <div className="pb-1">
+        <div className="my-5 ">
+            <div className={`pb-1 ${labelColor ?? 'text-black'}`}>
                 <label>
                     {labelText}
                 </label>

@@ -12,7 +12,7 @@ export default function AuthHeader({
                 <img
                     alt="logo"
                     className="object-contain "
-                    src="/logo_black.png" />
+                    src="/logo.png" />
             </div>
             <h2 className="text-center text-3xl font-extrabold text-gray-900 ">
                 {heading}

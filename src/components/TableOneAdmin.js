@@ -53,17 +53,17 @@ export default function TableOneAdmin({ isCheck, setIsCheck, titleCheck, setTitl
                     (isShowId === false && (products.length > 0 ? products[0]?.toString().length : 0) > titles.length) ||
                     (isShowId === true && (products.length > 0 ? products[0]?.toString().length : 0) === titles.length)
                 ) ? (
-                    <div className="shadow-md bg-white">
+                    <div className="shadow-md bg-white w-[90rem]">
                         {options ? (
                             <div className="w-[12rem] p-4 bg-white rounded-t-md">
                                 {options}
                             </div>
                         ) : null}
-                        <div className={` overflow-x-auto ${options ? "" : "rounded-t-md"}`}>
+                        <div className={`overflow-x-scroll ${options ? "" : "rounded-t-md"}`}>
 
                             <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                                 {titles ? (
-                                    <thead className="text-xs text-gray-700 capitalize bg-white">
+                                    <thead className="text-sm text-gray-700 capitalize bg-white">
                                         <tr>
                                             {isCheckboxOn && (titleCheck === false || titleCheck) && (typeof setTitleCheck === "function") ? (
                                                 <th scope="col" className="p-4">
@@ -110,7 +110,7 @@ export default function TableOneAdmin({ isCheck, setIsCheck, titleCheck, setTitl
                                                 }
                                             }
                                             return (
-                                                <tr key={product._id} className="text-xs bg-white border-b  hover:bg-gray-50 ">
+                                                <tr key={product._id} className="text-sm bg-white border-b  hover:bg-gray-50 ">
                                                     {/* isCheckBox? */}
                                                     {isCheckboxOn && isCheck && (typeof setIsCheck === "function") ? (
                                                         <td className="w-4 p-4">
@@ -137,13 +137,13 @@ export default function TableOneAdmin({ isCheck, setIsCheck, titleCheck, setTitl
                                                                             kertasKerjaStatus: "decline",
                                                                             id: product._id,
                                                                         })
-                                                                    } type="button" className="rounded-l inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase hover:bg-red-700 focus:bg-red-700 focus:outline-none focus:ring-0 active:bg-red-800 transition duration-150 ease-in-out">Decline</button>
+                                                                    } type="button" className="rounded-l inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-sm leading-tight uppercase hover:bg-red-700 focus:bg-red-700 focus:outline-none focus:ring-0 active:bg-red-800 transition duration-150 ease-in-out">Decline</button>
                                                                     <button onClick={
                                                                         () => changeKertasKerjaStatus({
                                                                             kertasKerjaStatus: "accepted",
                                                                             id: product._id,
                                                                         })
-                                                                    } type="button" className=" rounded-r inline-block px-6 py-2.5 bg-green-600 text-white font-medium text-xs leading-tight uppercase hover:bg-green-700 focus:bg-green-700 focus:outline-none focus:ring-0 active:bg-green-800 transition duration-150 ease-in-out">Accept</button>
+                                                                    } type="button" className=" rounded-r inline-block px-6 py-2.5 bg-green-600 text-white font-medium text-sm leading-tight uppercase hover:bg-green-700 focus:bg-green-700 focus:outline-none focus:ring-0 active:bg-green-800 transition duration-150 ease-in-out">Accept</button>
                                                                 </div>
                                                             </th>
                                                             : <th scope="row" className={`px-6 py-4 font-medium ${product.kertas_kerja_status === "accepted" ? "text-green-900" : "text-red-900"}  whitespace-nowrap`}>
